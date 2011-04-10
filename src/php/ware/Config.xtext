@@ -1,0 +1,41 @@
+grammar php.ware.Config with org.eclipse.xtext.common.Terminals
+
+generate config "http://www.ware.php/Config"
+
+import "classpath:/php/ware/Entity.ecore" as ent
+
+ConfigModel:
+    elements+=AbstractElement*;
+
+AbstractElement:
+    PackageDeclaration | Extension | Import;
+
+Import:
+    'import' importedNamespace=QualifiedNameWithWildCard;
+
+PackageDeclaration:
+    'package' name=QualifiedName '{'
+        elements+=AbstractElement*
+    '}';
+    
+Extension:
+    AnnonateEntity | ConfigDeclaration;
+
+AnnonateEntity:
+    'annonate' 'entity' element=[ent::Entity|QualifiedName] ('::' feature=[ent::Feature])? '{'
+        properties+=Property+
+    '}';
+    
+ConfigDeclaration:
+    'configure' element=QualifiedName '{'
+        properties+=Property+
+    '}';
+
+Property:
+    propertyName=ID '=' propertyValue=STRING;
+
+QualifiedNameWithWildCard:
+    QualifiedName '.*'?;
+
+QualifiedName:
+    ID ('.' ID)*;
