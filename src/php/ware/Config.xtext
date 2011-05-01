@@ -9,15 +9,10 @@ ConfigModel:
     elements+=AbstractElement*;
 
 AbstractElement:
-    PackageDeclaration | Extension | Import;
+    Extension | Import;
 
 Import:
     'import' importedNamespace=QualifiedNameWithWildCard;
-
-PackageDeclaration:
-    'package' name=QualifiedName '{'
-        elements+=AbstractElement*
-    '}';
     
 Extension:
     AnnonateEntity | ConfigDeclaration;
