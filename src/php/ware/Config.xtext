@@ -5,18 +5,14 @@ generate config "http://www.ware.php/Config"
 import "classpath:/php/ware/Entity.ecore" as ent
 
 ConfigModel:
+    "configure" name=ID //name or id, guaranty a name for ConfigModel
     elements+=AbstractElement*;
 
 AbstractElement:
-    PackageDeclaration | Extension | Import;
+    Extension | Import;
 
 Import:
     'import' importedNamespace=QualifiedNameWithWildCard;
-
-PackageDeclaration:
-    'package' name=QualifiedName '{'
-        elements+=AbstractElement*
-    '}';
     
 Extension:
     AnnonateEntity | ConfigDeclaration;

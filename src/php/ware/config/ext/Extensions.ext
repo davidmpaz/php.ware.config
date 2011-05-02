@@ -1,0 +1,5 @@
+import php::ware::config;
+
+List[Property] getConfigProperties(ConfigModel this, String ele):
+    this.elements.typeSelect(ConfigDeclaration).element == ele
+    ;

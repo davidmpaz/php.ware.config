@@ -34,7 +34,6 @@ public class ConfigFormatter extends AbstractDeclarativeFormatter {
         c.setLinewrap(0, 1, 1).after(f.getML_COMMENTRule());
 
         c.setLinewrap(1, 2, 3).around(f.getAbstractElementRule());
-        c.setLinewrap(1, 2, 3).around(f.getPackageDeclarationRule());
 
         // annotate entity statements
         c.setLinewrap(0, 1, 1).before(f.getExtensionRule());
